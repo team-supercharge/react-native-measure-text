@@ -57,17 +57,21 @@ public class RNMeasureTextModule extends ReactContextBaseJavaModule {
       float spacingMultiplier = 1;
       float spacingAddition = 0;
       boolean includePadding = false;
-      StaticLayout layout = new StaticLayout(
-              text,
-              paint,
-              width,
-              Layout.Alignment.ALIGN_NORMAL,
-              spacingMultiplier,
-              spacingAddition,
-              includePadding
-      );
+      if (text != null ) {
+        StaticLayout layout = new StaticLayout(
+                text,
+                paint,
+                width,
+                Layout.Alignment.ALIGN_NORMAL,
+                spacingMultiplier,
+                spacingAddition,
+                includePadding
+        );
 
-      results.pushDouble((double)layout.getHeight());
+        results.pushDouble((double) layout.getHeight());
+      } else {
+        results.pushDouble(5d);
+      }
     }
 
     promise.resolve(results);
